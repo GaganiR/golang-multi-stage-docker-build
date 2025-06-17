@@ -1,11 +1,11 @@
 ## What is Multi Stage Dockerfile?
 Multi-stage builds are a Docker feature that allows you to use multiple FROM statements in a single Dockerfile to create smaller, cleaner, and more secure images. 
 
-Without multi-stage builds:
+__Without multi-stage builds:__
 
 * You often end up with large images containing build tools, dependencies, or temporary files that are no longer needed after your app is built.
 
-With multi-stage builds:
+__With multi-stage builds:__
 
 * You can use one stage to build your application, and another stage to copy only the necessary files into a clean, minimal runtime image.
 
@@ -29,7 +29,7 @@ There are two dockerfiles here for comparison. One as a regualar dockerfile and 
 
 Both of them will be built seperately to create two images. Then the image size will be compared.
 
-## dockerfile-without-multistage
+## 1. dockerfile-without-multistage
 ```
 FROM ubuntu AS build
 
@@ -56,7 +56,7 @@ ENTRYPOINT ["/app"]
 > Sets the compiled binary as the entry point. When the container runs, it executes /app.
 ## Result
 The final image contains all build tools (like Golang and Ubuntu libraries), making it larger and potentially insecure.
-## dockerfile-multistage
+## 2. dockerfile-multistage
 ```
 ###########################################
 # BASE IMAGE - STAGE 1
